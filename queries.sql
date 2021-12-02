@@ -60,7 +60,6 @@ UPDATE ANIMALS set weight_kg = weight_kg * -1 WHERE weight_kg < 0;
 --Commit transaction
 COMMIT;
 
-
 --How many animals are there?
 SELECT COUNT(*) FROM ANIMALS;
 --How many animals have never tried to escape?
@@ -78,3 +77,33 @@ SELECT species, max(weight_kg), min(weight_kg) FROM ANIMALS GROUP BY species;
 SELECT species, avg(escape_attempts) FROM ANIMALS
 WHERE EXTRACT(year FROM date_of_birth) BETWEEN 1990 AND 2000
 GROUP BY species;
+
+DAY 3,
+--Write queries (using JOIN) to answer the following questions:
+--What animals belong to Melody Pond?
+SELECT * FROM ANIMALS a inner join OWNERS o on a.owner_id = o.id WHERE o.full_name = 'Melody Pond';
+--List of all animals that are pokemon (their type is Pokemon).
+SELECT * FROM ANIMALS a inner join SPECIES s on a.species_id = s.id WHERE s.name = 'Pokemon';
+--List all owners and their animals, remember to include those that don't own any animal.
+SELECT * FROM ANIMALS a right join OWNERS o on a.owner_id = o.id;
+--How many animals are there per species?
+SELECT s.name, count(*) FROM ANIMALS a inner join SPECIES s on a.species_id = s.id
+GROUP BY s.name;
+--List all Digimon owned by Jennifer Orwell.
+SELECT a.name as animal_name,s.name as species,o.full_name as owner FROM ANIMALS a 
+inner join OWNERS o on a.owner_id = o.id
+inner join SPECIES s on a.species_id = s.id
+WHERE o.full_name = 'Jennifer Orwell' and s.name = 'Digimon';
+--List all animals owned by Dean Winchester that haven't tried to escape.
+SELECT a.name as animal_name, a.escape_attempts, o.full_name as owner FROM ANIMALS a 
+inner join OWNERS o on a.owner_id = o.id
+WHERE o.full_name = 'Dean Winchester' and a.escape_attempts = 0;
+--Who owns the most animals?
+SELECT owner, count FROM (
+SELECT o.full_name as owner, COUNT(*) FROM ANIMALS a 
+inner join OWNERS o on a.owner_id = o.id
+GROUP BY o.id
+) as Result where count = (SELECT max(count) FROM (
+SELECT o.full_name as owner, COUNT(*) as count FROM ANIMALS a 
+inner join OWNERS o on a.owner_id = o.id
+GROUP BY o.id) as Result);
