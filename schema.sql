@@ -1,5 +1,5 @@
 /* Database schema to keep the structure of entire database. */
-DAY 1,
+--DAY 1,
 CREATE DATABASE vet_clinic;
 
 CREATE TABLE animals(
@@ -11,11 +11,11 @@ CREATE TABLE animals(
   weight_kg     DECIMAL
 );
 
-DAY 2,
+--DAY 2,
 ALTER TABLE  animals 
 ADD COLUMN species VARCHAR(50)
 
-DAY 3,
+--DAY 3,
 CREATE TABLE owners(
   id            INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   full_name          VARCHAR(200),
@@ -46,7 +46,7 @@ ADD CONSTRAINT Owners_ID
 FOREIGN KEY (owner_id) 
 REFERENCES owners (id);
 
-DAY 4,
+--DAY 4,
 CREATE TABLE vets (
   id            INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   name          VARCHAR(200),

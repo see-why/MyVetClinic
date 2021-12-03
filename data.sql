@@ -1,5 +1,5 @@
 /* Populate database with sample data. */
-DAY 1,
+--DAY 1,
 INSERT INTO animals (name, date_of_birth, escape_attempts, neutered, weight_kg) 
 VALUES ('Agumon','02-03-2020', 0, true, 10.23);
 INSERT INTO animals (name, date_of_birth, escape_attempts, neutered, weight_kg) 
@@ -9,7 +9,7 @@ VALUES ('Pikachu','07-01-2021', 1, false, 15.04);
 INSERT INTO animals (name, date_of_birth, escape_attempts, neutered, weight_kg) 
 VALUES ('Devimon','12-05-2017', 5, true, 11);
 
-DAY 2,
+--DAY 2,
 INSERT INTO animals (name, date_of_birth, weight_kg, neutered, escape_attempts) 
 VALUES ('Charmander','08-02-2020', 11, false, 0);
 INSERT INTO animals (name, date_of_birth, weight_kg, neutered, escape_attempts) 
@@ -23,7 +23,7 @@ VALUES ('Boarmon','07-06-2005', 20.4, true, 7);
 INSERT INTO animals (name, date_of_birth, weight_kg, neutered, escape_attempts) 
 VALUES ('Blossom','13-10-1998', 17, true, 3);
 
-DAY 3,
+--DAY 3,
 INSERT INTO owners (full_name, age) 
 VALUES ('Sam Smith', 34);
 INSERT INTO owners (full_name, age) 
@@ -67,7 +67,7 @@ WHERE name in ('Charmander','Squirtle','Blossom');
 UPDATE animals set owner_id= (SELECT ID FROM owners WHERE full_name='Dean Winchester')
 WHERE name in ('Angemon','Boarmon');
 
-DAY 4,
+--DAY 4,
 INSERT INTO vets (name, age, date_of_graduation) 
 VALUES ('William Tatcher', 45, '23-04-2000');
 INSERT INTO vets (name, age, date_of_graduation) 

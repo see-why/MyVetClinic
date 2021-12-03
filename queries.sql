@@ -1,6 +1,6 @@
 /*Queries that provide answers to the questions from all projects.*/
 
-DAY 1,
+--DAY 1,
 -- Find all animals whose name ends in "mon".
 SELECT * FROM ANIMALS WHERE NAME LIKE '%mon';
 -- List the name of all animals born between 2016 and 2019.
@@ -18,7 +18,7 @@ SELECT * FROM ANIMALS WHERE name <> 'Gabumon';
 -- Find all animals with a weight between 10.4kg and 17.3kg (including the animals with the weights that equals precisely 10.4kg or 17.3kg)
 SELECT * FROM ANIMALS WHERE weight_kg >= 10.4 AND weight_kg <= 17.3;
 
-DAY 2,
+--DAY 2,
 --Inside a transaction update the animals table by setting the species column to unspecified. Verify that change was made. Then roll back the change and verify that species columns went back to the state before tranasction.
 BEGIN;
 UPDATE ANIMALS SET species='unspecified';
@@ -78,7 +78,7 @@ SELECT species, avg(escape_attempts) FROM ANIMALS
 WHERE EXTRACT(year FROM date_of_birth) BETWEEN 1990 AND 2000
 GROUP BY species;
 
-DAY 3,
+--DAY 3,
 --Write queries (using JOIN) to answer the following questions:
 --What animals belong to Melody Pond?
 SELECT * FROM ANIMALS a inner join OWNERS o on a.owner_id = o.id WHERE o.full_name = 'Melody Pond';
@@ -108,7 +108,7 @@ SELECT o.full_name as owner, COUNT(*) as count FROM ANIMALS a
 inner join OWNERS o on a.owner_id = o.id
 GROUP BY o.id) as Result);
 
-DAY 4,
+--DAY 4,
 --Who was the last animal seen by William Tatcher?
 SELECT * FROM ANIMALS WHERE id in 
 (SELECT animals_id FROM VISITS vs inner join VETS ve on vs.vets_id = ve.id 
