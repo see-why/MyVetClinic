@@ -8,7 +8,7 @@ CREATE TABLE patients(
 
 CREATE TABLE medical_histories(
   id            INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  admitted_at DATE,
+  admitted_at TIMESTAMP,
   status  VARCHAR(10),
   patient_id INT,
 
@@ -25,6 +25,25 @@ CREATE TABLE treatments(
 
 CREATE TABLE invoices(
   id            INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  type          VARCHAR(50),
-  name          VARCHAR(50)
+  total_amount          decimal,
+  generated_amount          TIMESTAMP,
+  payed_at          TIMESTAMP,
+  medical_history_id INT,
+
+  CONSTRAINT fk_medical_history_id
+      FOREIGN KEY(medical_history_id) 
+	  REFERENCES medical_histories(id)  
+
+);
+
+CREATE TABLE invoice_items(
+  id            INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  unit_price    decimal,
+  total_price    decimal,
+  quantity      INT,
+  invoice_id     INT,
+
+  CONSTRAINT fk_invoice_id
+      FOREIGN KEY(invoice_id) 
+	  REFERENCES invoices(id)  
 );
