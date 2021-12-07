@@ -23,6 +23,20 @@ CREATE TABLE treatments(
   name          VARCHAR(50)
 );
 
+CREATE TABLE medical_histories_treatments(
+  id            INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  treatments_id INT,
+  medical_history_id INT,
+
+  CONSTRAINT fk_medical_history_id
+    FOREIGN KEY(medical_history_id)
+	  REFERENCES medical_histories(id),
+
+  CONSTRAINT fk_treatments_id
+      FOREIGN KEY(treatments_id)
+	  REFERENCES treatments(id)  
+);
+
 CREATE TABLE invoices(
   id            INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   total_amount          decimal,
